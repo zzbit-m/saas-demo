@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: saas_user
+      POSTGRES_PASSWORD: saas_password
+      POSTGRES_DB: saas_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://saas_user:saas_password@postgres:5432/saas_db
+      JWT_SECRET_KEY: change-me-in-production
+      CORS_ORIGINS: "*"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
