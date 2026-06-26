@@ -4,7 +4,12 @@ Multi-tenant team notes app built on [saas-template](https://github.com/zzbit-m/
 
 Shows the full pattern: signup → create org → invite members → collaborate on notes.
 
-## Quick start
+## Try it live
+
+- **Frontend**: [https://saas-demo.vercel.app](https://saas-demo.vercel.app) ← sign up, create orgs, write notes
+- **API docs**: [https://saas-demo.fly.dev/docs](https://saas-demo.fly.dev/docs)
+
+## Quick start (backend only)
 
 ```bash
 uv sync --all-extras
@@ -14,6 +19,24 @@ uv run uvicorn app.main:app --reload
 ```
 
 Open http://127.0.0.1:8000/docs to explore the API.
+
+## Quick start (full stack)
+
+```bash
+docker compose up --build
+```
+
+Open http://localhost to use the web UI.
+
+## Quick start (frontend dev mode)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Vite proxies `/api` to `http://127.0.0.1:8000`. Start both the backend (`uv run uvicorn ...`) and the frontend dev server.
 
 ## Tutorial
 
@@ -74,3 +97,11 @@ Layered: **Routers → Services → Models → Database**
 - No HTTP in services
 - UUID primary keys on all models
 - Async SQLAlchemy 2.0 everywhere
+
+## Frontend
+
+React + Vite + TypeScript + Tailwind CSS v4. Lives in `frontend/`.
+
+- **Dev**: `cd frontend && npm install && npm run dev`
+- **Build**: `cd frontend && npm run build` (outputs to `frontend/dist/`)
+- **Docker**: `docker compose up --build` (Nginx serves the built app, proxies `/api` to the backend)

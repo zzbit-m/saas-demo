@@ -21,5 +21,12 @@ services:
     depends_on:
       - postgres
 
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+
 volumes:
   pgdata:
