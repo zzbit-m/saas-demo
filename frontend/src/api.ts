@@ -1,4 +1,7 @@
-const BASE = import.meta.env.VITE_API_BASE_URL ?? "/api";
+let BASE = import.meta.env.VITE_API_BASE_URL ?? "/api";
+if (BASE !== "/api" && !BASE.startsWith("http")) {
+  BASE = `https://${BASE}`;
+}
 
 function getToken(): string | null {
   return localStorage.getItem("access_token");
