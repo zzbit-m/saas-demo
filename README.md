@@ -9,6 +9,18 @@ Shows the full pattern: signup → create org → invite members → collaborate
 - **Frontend**: [https://saas-demo-bay.vercel.app](https://saas-demo-bay.vercel.app)
 - **API docs**: (deploy backend first — see below)
 
+### How to use the live demo
+
+1. Open the [frontend](https://saas-demo-bay.vercel.app)
+2. **Sign up** — enter any email + password (demo, no verification needed)
+3. You're logged in immediately. Create your first **Organization** (give it a name, slug is auto-generated)
+4. Click into the org — you'll see the **Members** tab and **Notes** tab
+5. **Invite members** by email (they need to sign up first, then you can add them to the org)
+6. **Create notes** — other members can view them; only the author or an org admin can edit/delete
+7. Sign out and **log in** as a different user to see the multi-tenant behavior
+
+> The demo resets periodically. If something breaks, sign up fresh.
+
 ## Quick start (backend only)
 
 ```bash
@@ -110,6 +122,29 @@ Layered: **Routers → Services → Models → Database**
 6. Copy your Railway URL (e.g. `https://saas-demo.up.railway.app`)
 7. In Vercel dashboard → your project → **Environment Variables** → add `VITE_API_BASE_URL` = `https://saas-demo.up.railway.app`
 8. Redeploy the frontend
+
+## Comparison: saas-template vs. saas-demo
+
+| Feature | saas-template | saas-demo |
+|---------|:------------:|:--------:|
+| Auth (signup / login / refresh) | ✅ | ✅ |
+| JWT access + refresh tokens | ✅ | ✅ |
+| User profile (get / update) | ✅ | ✅ |
+| Organization CRUD | ✅ | ✅ |
+| Org member management (invite / list / remove) | ✅ | ✅ |
+| Role-based access (owner / admin / member) | ✅ | ✅ |
+| Notes CRUD (org-scoped) | ❌ | ✅ |
+| Async SQLAlchemy 2.0 + Alembic | ✅ | ✅ |
+| PostgreSQL (prod) / SQLite (dev) | ✅ | ✅ |
+| Docker Compose (full stack) | ✅ | ✅ |
+| React + Vite + Tailwind frontend | ❌ | ✅ |
+| Live deployment (Vercel + Railway) | ❌ | ✅ |
+| Tutorial walkthrough (`docs/tutorial.md`) | ❌ | ✅ |
+| CI / lint / typecheck / tests | ✅ | ✅ |
+
+**saas-template** is the reusable skeleton — backend only, ready to fork and build your own SaaS on top.
+
+**saas-demo** is the reference implementation — everything the template has plus a notes feature, a React frontend, and a live deployment. Use it to see the full pattern in action.
 
 ## Frontend
 
