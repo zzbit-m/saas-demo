@@ -10,6 +10,7 @@ from app.database import Base
 
 # import all models so autogenerate detects them
 from app.models.membership import Membership  # noqa: F401
+from app.models.note import Note  # noqa: F401
 from app.models.organization import Organization  # noqa: F401
 from app.models.user import User  # noqa: F401
 
