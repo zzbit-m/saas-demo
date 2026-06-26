@@ -6,8 +6,8 @@ Shows the full pattern: signup → create org → invite members → collaborate
 
 ## Try it live
 
-- **Frontend**: [https://saas-demo.vercel.app](https://saas-demo.vercel.app) ← sign up, create orgs, write notes
-- **API docs**: [https://saas-demo.fly.dev/docs](https://saas-demo.fly.dev/docs)
+- **Frontend**: [https://saas-demo-bay.vercel.app](https://saas-demo-bay.vercel.app)
+- **API docs**: (deploy backend first — see below)
 
 ## Quick start (backend only)
 
@@ -97,6 +97,19 @@ Layered: **Routers → Services → Models → Database**
 - No HTTP in services
 - UUID primary keys on all models
 - Async SQLAlchemy 2.0 everywhere
+
+## Deploy backend (Railway — free)
+
+1. Go to [railway.com/new](https://railway.com/new)
+2. Import `zzbit-m/saas-demo`
+3. Add a **PostgreSQL** database (it auto-provisions)
+4. Set environment variables:
+   - `JWT_SECRET_KEY` → a random string
+   - `CORS_ORIGINS` → `https://saas-demo-bay.vercel.app`
+5. Deploy
+6. Copy your Railway URL (e.g. `https://saas-demo.up.railway.app`)
+7. In Vercel dashboard → your project → **Environment Variables** → add `VITE_API_BASE_URL` = `https://saas-demo.up.railway.app`
+8. Redeploy the frontend
 
 ## Frontend
 
