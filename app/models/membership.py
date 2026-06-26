@@ -17,4 +17,6 @@ class Membership(Base):
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
     org_id: Mapped[str] = mapped_column(ForeignKey("organizations.id"))
     role: Mapped[str] = mapped_column(membership_role)
-    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(UTC))
+    created_at: Mapped[datetime] = mapped_column(
+        default=lambda: datetime.now(UTC).replace(tzinfo=None)
+    )
